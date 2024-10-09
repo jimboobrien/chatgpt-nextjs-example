@@ -1,66 +1,47 @@
-/*
-'use client'
-import { useState, useEffect } from 'react'
-
-export default function MyComponent() {
-  const [data, setData] = useState(null)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('/api/createPrompt') // Replace with your API endpoint 
-      const data = await res.json()
-      setData(data)
-    }
-    fetchData()
-  }, [])
-
-  if (!data) return <div>Loading...</div>
-
-  return (
-    <div>
-      {/* Display the fetched data }
-      {data.map((item) => (
-        <div key={item.id}>{item.name}</div>
-      ))}
-    </div>
-  )
-}
-*/
-
-'use client';
+'use client'; // Required for client-side components
 
 import { useState } from 'react';
 
-export default function SendMessage() {
-  const [responseData, setResponseData] = useState(null);
-  const [error, setError] = useState(null);
+export default function OpenAIPrompt() {
+  const [prompt, setPrompt] = useState('');
+  const [result, setResult] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const sendMessage = async () => {
+  const submitPrompt = async () => {
+    setLoading(true);
     try {
-      const res = await fetch('/api/createPrompt', {
+      const response = await fetch('/api/createPrompt', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          messages: [{ role: 'user', content: 'Hello!' }],
-        }),
+        body: JSON.stringify({ prompt }),
       });
 
-      const data = await res.json();
-      setResponseData(data);
+      const data = await response.json();
+      if (response.ok) {
+        setResult(data.result);
+      } else {
+        console.error('Error:', data.error);
+      }
     } catch (error) {
-      setError(error);
+      console.error('Request failed:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
-      <button onClick={sendMessage}>Send Message</button>
-      {responseData && <pre>{JSON.stringify(responseData, null, 2)}</pre>}
-      {error && <p>Error: {error.message}</p>}
+      <textarea 
+        value={prompt} 
+        onChange={(e) => setPrompt(e.target.value)} 
+        placeholder="Enter your prompt here" 
+      />
+      <button onClick={submitPrompt} disabled={loading}>
+        {loading ? 'Loading...' : 'Submit'}
+      </button>
+      {result && <p>Result: {result}</p>}
     </div>
   );
 }
-
-
