@@ -37,10 +37,18 @@ export async function POST(request: Request) {
       }
     );
 
+    //console.log( response.data );
+    console.log( "prompt:", prompt );
+    console.log( "cost for prompt:", response.data.usage.prompt_tokens );
+    console.log( "total tokens cost: ", response.data.usage.total_tokens );
+
 
     const text = response.data.choices[0].message.content.trim();
 
-    return NextResponse.json({ result: text });
+    return NextResponse.json({
+      result: text,
+      cost: response.data.usage.total_tokens,
+    });
   } catch (error) {
     const err = error as any;
     console.error('OpenAI API error:', err.response?.data || err.message);
