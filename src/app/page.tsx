@@ -1,10 +1,12 @@
 
-import MyComponent from '../components/apiCall';
+import RegularPrompt from '../components/regularPrompt';
+import ImagePrompt from '../components/imagePrompt';
 
 export default function Home() {
   return (
       <div className="main_wrapper">
-      <MyComponent/>
+        <RegularPrompt />
+        <ImagePrompt />
       </div>
   );
 }

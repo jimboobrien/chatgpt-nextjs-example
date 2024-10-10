@@ -62,6 +62,7 @@ export default function OpenAIPrompt({ onSubmit, onReset }: OpenAIPromptProps) {
   return (
     <div>
       <form onSubmit={submitPrompt} className="openai-prompt-form">
+        <h2>Regular Prompt</h2>
         <div>
           <textarea
             value={prompt}

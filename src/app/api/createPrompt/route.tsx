@@ -1,53 +1,51 @@
-// app/api/openai/route.js
-
 import { NextResponse } from 'next/server';
-import axios from 'axios';
+//import axios from 'axios';
+import OpenAI from "openai";
+const openai = new OpenAI();
 
-//import OpenAI from "openai";
 
 export async function POST(request: Request) {
   const { prompt } = await request.json();
+  let text = '';
 
   if (!prompt) {
     return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
   }
 
   try {
-    const response = await axios.post(
-      'https://api.openai.com/v1/chat/completions',
-      {
-        model: 'gpt-3.5-turbo',
+
+    const response = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant.' // System role to set the behavior of the assistant
+            content: 'You are a helpful assistant.'
           },
           {
             role: 'user',
-            content: prompt  // User input passed from the frontend
+            content: prompt
           }
         ],
-        max_tokens: 100, // Adjust as needed
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
+        max_tokens: 300,
+    });
+
+    if (response.usage) {
+      console.log( "cost for prompt:", response.usage.prompt_tokens );
+      console.log( "total tokens cost: ", response.usage.total_tokens );
+    } else {
+      return NextResponse.json(
+        { error: 'Failed to connect to OpenAI' },
+        { status: 500 }
+      );
+    }
+    if ( response.usage ) {
+      if (response.choices && response.choices[0] && response.choices[0].message && response.choices[0].message.content) {
+        text = response.choices[0].message.content.trim();
       }
-    );
-
-    //console.log( response.data );
-    console.log( "prompt:", prompt );
-    console.log( "cost for prompt:", response.data.usage.prompt_tokens );
-    console.log( "total tokens cost: ", response.data.usage.total_tokens );
-
-
-    const text = response.data.choices[0].message.content.trim();
-
+    }
     return NextResponse.json({
       result: text,
-      cost: response.data.usage.total_tokens,
+      cost: response.usage.total_tokens,
     });
   } catch (error) {
     const err = error as any;
