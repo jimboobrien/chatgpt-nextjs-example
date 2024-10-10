@@ -24,6 +24,7 @@ export async function POST(request: Request) {
         }
     );
     //console.log( "image: ", image );
+    console.log( "image: ", image.data[0].url );
 
     if ( image ) {
         imageUrl = image.data[0].url ?? '';

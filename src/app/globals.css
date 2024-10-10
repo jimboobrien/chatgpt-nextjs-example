@@ -28,6 +28,12 @@ pre {
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
+.image-container {
+  position: relative;
+  height: 550px;
+  min-height: 500px;
+}
+
 .main_wrapper {
   background: rgba(151, 151, 151, 0.8);
   min-height: 500px;

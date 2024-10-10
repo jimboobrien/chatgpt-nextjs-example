@@ -86,7 +86,9 @@ export default function ImageGenerator() {
       {imageUrl && (
         <div className="result-container">
           <h3>Image Result:</h3>
-          <Image src={imageUrl} alt="Generated Image" width={400} height={400} />
+          <div className="image-container">
+            <Image src={imageUrl} alt="Generated Image"  fill={true} />
+          </div>
           <pre>{imageUrl}</pre>
         </div>
       )}
