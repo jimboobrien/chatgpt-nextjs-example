@@ -16,6 +16,8 @@
   }
 }
 
+h2 { color: black; }
+
 body {
   color: rgb(var(--foreground-rgb));
 }
