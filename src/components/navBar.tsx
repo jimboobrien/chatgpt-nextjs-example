@@ -26,7 +26,7 @@ const Navbar = () => {
           <li key={i} className="nav-item">
             <Link
                 href={item.path}
-                className={`nav-link ${activePage === item.name ? 'active' : ''}  `}
+                className={`nav-link pl-2 pr-2 ${activePage === item.name ? 'active' : ''}  `}
                 onClick={() => setActive(item.name)}
             >
               <span className="pr-2">
