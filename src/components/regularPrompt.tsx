@@ -7,7 +7,7 @@ interface OpenAIPromptProps {
   onReset: () => void;
 }
 
-export default function OpenAIPrompt({ onSubmit, onReset }: OpenAIPromptProps) {
+export default function OpenAIPrompt() {
   const [prompt, setPrompt] = useState('');
   const [promptType, setPromptType] = useState('regular');
   const [result, setResult] = useState('');
