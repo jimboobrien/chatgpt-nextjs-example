@@ -3,6 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import { useActivePage } from '../context/ActivePageContext';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faComment, faImage, faMapLocationDot } from '@fortawesome/pro-solid-svg-icons';
+
 import Link from 'next/link';
 
 const Navbar = () => {
@@ -10,31 +13,31 @@ const Navbar = () => {
     //const [items, setItems] = useState([]);
 
     const navItems = [
-        { "name": "Home", "path": "/", "icon": "fa-solid fa-house" },
-        { "name": "Text Prompt", "path": "/textPrompt", "icon": "fa-regular fa-comment" },
-        { "name": "Image Prompt", "path": "/imagePrompt", "icon": "fa-solid fa-image" },
-        { "name": "DND Map", "path": "/dndPrompt", "icon": "fa-solid fa-map-location-dot" }
+        { "name": "Home", "path": "/", "icon": faHome },
+        { "name": "Text Prompt", "path": "/textPrompt", "icon": faComment },
+        { "name": "Image Prompt", "path": "/imagePrompt", "icon": faImage },
+        { "name": "DND Map", "path": "/dndPrompt", "icon": faMapLocationDot }
     ];
 
-  // Load nav items from JSON
-//   useEffect(() => {
-//     setItems(navItems);
-//   }, []);
-
   return (
+    <>
     <ul className=" nav nav-pills flex-column mb-auto navbar-nav">
-        {navItems.map((item) => (
-            <li key={item.path} className="nav-item">
+      {navItems.map((item, i) => (
+          <li key={i} className="nav-item">
             <Link
                 href={item.path}
-                className={`nav-link ${activePage === item.name ? 'active' : ''} ${item.icon} `}
+                className={`nav-link ${activePage === item.name ? 'active' : ''}  `}
                 onClick={() => setActive(item.name)}
             >
-                {item.name}
+              <span className="pr-2">
+                <FontAwesomeIcon icon={item.icon} />
+              </span>
+              {item.name}
             </Link>
-            </li>
-        ))}
+          </li>
+      ))}
     </ul>
+    </>
   );
 };
 

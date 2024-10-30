@@ -1,12 +1,4 @@
 
-
-
-
-/*
-@import "~bootstrap/dist/css/bootstrap.min.css";
-@import '../scss/custom_bootstrap.scss';
-*/
-
 @import "./scss/main";
 
 @tailwind base;
@@ -31,6 +23,8 @@ h2 { color: black; }
 
 body {
   color: rgb(var(--foreground-rgb));
+  height: 100%;
+  margin: 0;
 }
 
 

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUser, faCog, faStar } from '@fortawesome/pro-solid-svg-icons'; // Use Pro icons here
+
+library.add(faUser, faCog, faStar);
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +28,12 @@ export default function RootLayout({
     <ActivePageProvider>
     <html lang="en">
       <body className={inter.className}>
-        <aside><Sidebar /></aside>
-        <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-          {children}
-        </main>
-        { /* <BootstrapClient /> */ }
+        <div className="layout-container">
+          <aside><Sidebar /></aside>
+          <main className="main-content">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
     </ActivePageProvider>

@@ -1,11 +1,32 @@
 
-    pre {
-        white-space: pre-wrap;       /* Since CSS 2.1 */
-        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-        white-space: -pre-wrap;      /* Opera 4-6 */
-        white-space: -o-pre-wrap;    /* Opera 7 */
-        word-wrap: break-word;       /* Internet Explorer 5.5+ */
-    }
+  pre {
+      white-space: pre-wrap;       /* Since CSS 2.1 */
+      white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+      white-space: -pre-wrap;      /* Opera 4-6 */
+      white-space: -o-pre-wrap;    /* Opera 7 */
+      word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  }
+
+  .layout-container {
+    display: grid;
+    grid-template-columns: 250px 1fr; // Adjust the width of the sidebar as needed
+    height: 100vh; // Full viewport height
+  }
+
+  .main-content {
+    position: relative;
+    max-height: 100vh;
+    overflow-y: auto; // Enable scrolling if content overflows
+    padding: 1rem; // Padding inside the main content
+    border-radius: 0.5rem; // Border radius for the main content
+  }
+
+
+  .dropup .dropdown-menu {
+    top: auto;
+    bottom: 100%; // Position the dropdown menu above the toggle
+    transform: translateY(-0.125rem); // Adjust the position slightly
+  }
 
   .image-container {
     position: relative;

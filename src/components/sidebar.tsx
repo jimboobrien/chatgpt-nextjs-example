@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Navbar from './navBar';
 
+
+
 function Sidebar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -12,14 +14,14 @@ function Sidebar() {
 
   return (
     <>
-      <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" >
+      <div className="d-flex flex-column flex-shrink-0 p-3 h-100 text-white bg-dark" >
         <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <span className="fs-4">Sidebar</span>
         </a>
         <hr />
         <Navbar />
         <hr />
-        <div className="dropdown">
+        <div className="dropdown dropup">
           <a
             href="#"
             className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
