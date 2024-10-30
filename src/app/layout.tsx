@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
+
+import Sidebar from '@/components/sidebar';
+import { ActivePageProvider } from '../context/ActivePageContext';
+
+//import BootstrapClient from '@/components/BootstrapClient';
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +20,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <>
+    <ActivePageProvider>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <aside><Sidebar /></aside>
+        <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+          {children}
+        </main>
+        { /* <BootstrapClient /> */ }
+      </body>
     </html>
+    </ActivePageProvider>
+    </>
   );
 }
