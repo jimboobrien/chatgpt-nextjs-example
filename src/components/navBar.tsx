@@ -10,10 +10,10 @@ const Navbar = () => {
     //const [items, setItems] = useState([]);
 
     const navItems = [
-        { "name": "Home", "path": "/" },
-        { "name": "Text Prompt", "path": "/textPrompt" },
-        { "name": "Image Prompt", "path": "/imagePrompt" },
-        { "name": "DND Map", "path": "/dndPrompt" }
+        { "name": "Home", "path": "/", "icon": "fa-solid fa-house" },
+        { "name": "Text Prompt", "path": "/textPrompt", "icon": "fa-regular fa-comment" },
+        { "name": "Image Prompt", "path": "/imagePrompt", "icon": "fa-solid fa-image" },
+        { "name": "DND Map", "path": "/dndPrompt", "icon": "fa-solid fa-map-location-dot" }
     ];
 
   // Load nav items from JSON
@@ -27,7 +27,7 @@ const Navbar = () => {
             <li key={item.path} className="nav-item">
             <Link
                 href={item.path}
-                className={`nav-link ${activePage === item.name ? 'active' : ''}`}
+                className={`nav-link ${activePage === item.name ? 'active' : ''} ${item.icon} `}
                 onClick={() => setActive(item.name)}
             >
                 {item.name}
