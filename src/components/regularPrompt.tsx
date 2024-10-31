@@ -7,8 +7,9 @@ interface OpenAIPromptProps {
   onReset: () => void;
 }
 
-export default function OpenAIPrompt({ onSubmit, onReset }: OpenAIPromptProps) {
+export default function OpenAIPrompt() {
   const [prompt, setPrompt] = useState('');
+  const [promptType, setPromptType] = useState('regular');
   const [result, setResult] = useState('');
   const [cost, setCost] = useState('');
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,7 @@ export default function OpenAIPrompt({ onSubmit, onReset }: OpenAIPromptProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ prompt, promptType }),
       });
 
       const data = await response.json();
@@ -60,9 +61,21 @@ export default function OpenAIPrompt({ onSubmit, onReset }: OpenAIPromptProps) {
   };
 
   return (
-    <div>
+    <div className="regularPrompt">
       <form onSubmit={submitPrompt} className="openai-prompt-form">
         <h2>Regular Prompt</h2>
+        <div className="mb-2">
+          <select
+            value={promptType}
+            onChange={(e) => setPromptType(e.target.value)}
+            disabled={loading}
+            className="select form-control"
+          >
+            <option value="regular">Regular Text Prompt</option>
+            <option value="image">Image Text Prompt</option>
+            <option value="json">JSON Text Prompt</option>
+          </select>
+        </div>
         <div>
           <textarea
             value={prompt}

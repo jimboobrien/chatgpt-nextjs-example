@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals.scss";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUser, faCog, faStar } from '@fortawesome/pro-solid-svg-icons'; // Use Pro icons here
+
+library.add(faUser, faCog, faStar);
 
 const inter = Inter({ subsets: ["latin"] });
+
+import Sidebar from '@/components/sidebar';
+import { ActivePageProvider } from '../context/ActivePageContext';
+
+//import BootstrapClient from '@/components/BootstrapClient';
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +24,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <>
+    <ActivePageProvider>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="layout-container">
+          <aside><Sidebar /></aside>
+          <main className="main-content">
+            {children}
+          </main>
+        </div>
+      </body>
     </html>
+    </ActivePageProvider>
+    </>
   );
 }
