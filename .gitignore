@@ -42,3 +42,4 @@ test*.zip
 *.zip
 
 .npmrc
+package.lock.json
