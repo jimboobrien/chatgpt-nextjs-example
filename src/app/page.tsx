@@ -5,7 +5,7 @@ export default function Home() {
       <div className="main_wrapper">
         <h1>ChatGPT Examples</h1>
         <p>
-          This is a collection of examples using OpenAI's ChatGPT model. The model is a large-scale transformer-based language model that can generate human-like text.
+          This is a collection of examples using OpenAI&apos;s ChatGPT model. The model is a large-scale transformer-based language model that can generate human-like text.
         </p>
         <div className="mb-3">
           <h2>Text Prompt</h2>
