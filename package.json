@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preinstall": "echo \"@fortawesome:registry=https://npm.fontawesome.com/\\n//npm.fontawesome.com/:_authToken=${NPM_TOKEN}\" >> .npmrc",
+    "message": "echo Making .npmrc file...",
+    "endmessage": "echo .npmrc file created!",
+    "preinstall": "npm run message && echo \"@fortawesome:registry=https://npm.fontawesome.com/\\n//npm.fontawesome.com/:_authToken=${NPM_TOKEN}\" >> .npmrc && npm run endmessage",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
