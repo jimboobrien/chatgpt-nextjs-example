@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preinstall": "echo \"@fortawesome:registry=https://npm.fontawesome.com/\\n//npm.fontawesome.com/:_authToken=${NPM_TOKEN}\" >> ~/.npmrc"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
