@@ -63,11 +63,11 @@ export default function ImageGenerator() {
   };
 
   return (
-    <div>
+    <div className="dndPrompt">
       <form onSubmit={generateImage} className="openai-prompt-form">
         <h2>DND Map Generator</h2>
 
-        <div>
+        <div className="form-group">
             <label htmlFor="mapType">MapType:</label>
             <input
                 type="text"
@@ -77,7 +77,7 @@ export default function ImageGenerator() {
                 onChange={(e) => setMapType(e.target.value)}
                 placeholder="Enter your map type here"
                 disabled={loading}
-                className=""
+                className="form-control"
             />
             <p>This field should be the type of style, examples are below:</p>
             <ul>
@@ -91,12 +91,14 @@ export default function ImageGenerator() {
 
         </div>
 
-        <div>
+        <div className="form-group">
+            <label htmlFor="mapGeo">MapGeo:</label>
             <select
                 name="mapGeo"
                 id="mapGeo"
                 value={mapGeo}
                 onChange={(e) => setMapGeo(e.target.value)}
+                className="form-control"
             >
                 <option value="Mountains">Mountains</option>
                 <option value="Rivers">Rivers</option>
@@ -104,30 +106,48 @@ export default function ImageGenerator() {
                 <option value="Deserts">Deserts</option>
                 <option value="Seas">Seas</option>
             </select>
+            <p>This field should be the type of geography, examples are below:</p>
+            <ul>
+                <li>Mountains</li>
+                <li>Rivers</li>
+                <li>Forests</li>
+                <li>Deserts</li>
+                <li>Seas</li>
+            </ul>
         </div>
 
-        <div>
+        <div className="form-group">
+            <label htmlFor="mapStyle">MapStyle:</label>
             <select
                 name="mapStyle"
                 id="mapStyle"
                 value={mapStyle}
                 onChange={(e) => setMapStyle(e.target.value)}
+                className="form-control"
             >
                 <option value="Hand-drawn">Hand-drawn</option>
                 <option value="Realistic">Realistic</option>
                 <option value="Minimalistic">Minimalistic</option>
                 <option value="Fantasy">Fantasy</option>
             </select>
+            <p>This field should be the style of the map, examples are below:</p>
+            <ul>
+                <li>Hand-drawn</li>
+                <li>Realistic</li>
+                <li>Minimalistic</li>
+                <li>Fantasy</li>
+            </ul>
         </div>
 
-        <div>
+        <div className="form-group">
+          <label htmlFor="prompt">Prompt:</label>
           <textarea
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Enter your prompt here"
             disabled={loading}
             rows={5}
-            className="textarea"
+            className="textarea form-control"
           />
           <p>This is the prompt for anything else you would like to add to the map. Examples below:</p>
           <ul>

@@ -43,6 +43,37 @@
     margin: 0 auto 20px;
   }
 
+  .ul-list {
+    list-style-type: disc;
+    padding: 0 0 0 17px;
+    margin: 0;
+  }
+
+  /*================================================*/
+  .imagePrompt {
+    .form-control {
+      -webkit-appearance: auto;
+    -moz-appearance: auto;
+         appearance: auto;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+  }
+
+  .regularPrompt {
+    .form-control {
+      -webkit-appearance: auto;
+    -moz-appearance: auto;
+         appearance: auto;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
 
   .openai-prompt-form {
     max-width: 500px;
@@ -96,8 +127,42 @@
     cursor: not-allowed;
   }
 
+
+  /* =========================================================== */
+
   .result-container {
     margin-top: 20px;
     font-size: 1.1rem;
   }
+
+
+
+  /* =========================================================== */
+
+  .dndPrompt {
+    //padding: 10px;
+    .form-group {
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      .form-control {
+        -webkit-appearance: auto;
+      -moz-appearance: auto;
+           appearance: auto;
+      }
+    }
+    .form-group:nth-child(even) {
+      background-color: #777;
+    }
+
+    .form-group:nth-child(odd) {
+      background-color: #bdbdbd;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
+
+  /* =========================================================== */
 

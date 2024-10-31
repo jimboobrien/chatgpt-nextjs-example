@@ -58,7 +58,7 @@ export default function ImageGenerator() {
   };
 
   return (
-    <div>
+    <div className="imagePrompt">
       <form onSubmit={generateImage} className="openai-prompt-form">
         <h2>Image Generator</h2>
         <div>
@@ -68,7 +68,7 @@ export default function ImageGenerator() {
             placeholder="Enter your prompt here"
             disabled={loading}
             rows={5}
-            className="textarea"
+            className="textarea form-control"
           />
           {error && <p className="error-message">{error}</p>}
         </div>

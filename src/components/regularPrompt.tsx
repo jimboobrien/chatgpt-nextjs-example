@@ -61,15 +61,15 @@ export default function OpenAIPrompt() {
   };
 
   return (
-    <div>
+    <div className="regularPrompt">
       <form onSubmit={submitPrompt} className="openai-prompt-form">
         <h2>Regular Prompt</h2>
-        <div>
+        <div className="mb-2">
           <select
             value={promptType}
             onChange={(e) => setPromptType(e.target.value)}
             disabled={loading}
-            className="select"
+            className="select form-control"
           >
             <option value="regular">Regular Text Prompt</option>
             <option value="image">Image Text Prompt</option>
