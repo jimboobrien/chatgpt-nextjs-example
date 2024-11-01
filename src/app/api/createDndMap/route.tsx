@@ -2,7 +2,10 @@
 import { NextResponse } from 'next/server';
 //import axios from 'axios';
 import OpenAI from "openai";
-const openai = new OpenAI();
+const config = {
+  apiKey: process.env.OPENAI_API_KEY,
+}
+const openai = new OpenAI(config);
 let imageUrl = '';
 let message = '';
 
