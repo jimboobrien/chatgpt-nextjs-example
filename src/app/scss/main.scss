@@ -14,6 +14,9 @@
     display: grid;
     grid-template-columns: 250px 1fr; // Adjust the width of the sidebar as needed
     height: 100vh; // Full viewport height
+    &.sidebar-collapsed {
+      grid-template-columns: 73px 1fr;
+    }
   }
 
   .main-content {
@@ -48,6 +51,33 @@
     padding: 0 0 0 17px;
     margin: 0;
   }
+
+  aside {
+    .logo-container {
+      height: 40px;
+      margin-bottom: 10px;
+    }
+    .btn-collapse {
+      color: white;
+      font-size: 1.25rem;
+      line-height: 1;
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      transition: box-shadow .15s ease-in-out;
+      color: rgba(255, 255, 255, .55);
+      border-color: rgba(255, 255, 255, .1);
+      height: 40px;
+      width: 40px;
+      padding: 10px;
+    }
+    .sidebar {
+      &.sidebar-collapsed {
+        width: 4.5rem;
+      }
+    }
+  }
+
 
   /*================================================*/
   .imagePrompt {

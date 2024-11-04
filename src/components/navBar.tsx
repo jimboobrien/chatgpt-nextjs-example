@@ -6,9 +6,15 @@ import { useActivePage } from '../context/ActivePageContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faComment, faImage, faMapLocationDot } from '@fortawesome/pro-solid-svg-icons';
 
-import Link from 'next/link';
+import Link from 'next/link';interface NavbarProps {
+  collapsed: boolean;
+}
 
-const Navbar = () => {
+interface NavbarProps {
+  collapsed: boolean;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ collapsed }) => {
     const { activePage, setActive } = useActivePage() as { activePage: string, setActive: (page: string) => void };
     //const [items, setItems] = useState([]);
 
@@ -21,7 +27,7 @@ const Navbar = () => {
 
   return (
     <>
-    <ul className=" nav nav-pills flex-column mb-auto navbar-nav">
+    <ul className={` nav nav-pills flex-column mb-auto navbar-nav ${collapsed ? 'nav-flush' : ''}` }>
       {navItems.map((item, i) => (
           <li key={i} className="nav-item">
             <Link
@@ -29,10 +35,12 @@ const Navbar = () => {
                 className={`nav-link pl-2 pr-2 ${activePage === item.name ? 'active' : ''}  `}
                 onClick={() => setActive(item.name)}
             >
-              <span className="pr-2">
+              <span className="">
                 <FontAwesomeIcon icon={item.icon} />
               </span>
-              {item.name}
+              <span className={ ` nav-link-text ${collapsed ? '' : 'pl-2'} ` }>
+                {!collapsed && item.name}
+              </span>
             </Link>
           </li>
       ))}
