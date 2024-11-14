@@ -1,11 +1,16 @@
 import { NextResponse } from 'next/server';
 //import axios from 'axios';
-import OpenAI from "openai";
-const config = {
-  apiKey: process.env.OPENAI_API_KEY,
-}
-console.log( "config: ", config );
-const openai = new OpenAI(config);
+// import OpenAI from "openai";
+// const config = {
+//   apiKey: process.env.OPENAI_API_KEY,
+// }
+// console.log( "config: ", config );
+// const openai = new OpenAI(config);
+const OpenAI = require("openai");
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
+
 let imageUrl = '';
 let message = '';
 
