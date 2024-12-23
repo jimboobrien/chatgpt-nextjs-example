@@ -43,3 +43,4 @@ test*.zip
 
 
 package.lock.json
+serverless.yaml

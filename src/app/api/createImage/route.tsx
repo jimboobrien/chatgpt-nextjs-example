@@ -54,9 +54,14 @@ export async function POST(request: Request) {
       message: message,
       //cost: 0,
     });
-  } catch (error) {
-    const err = error as any;
-    console.error('OpenAI API error:', err.response?.data || err.message);
+  } catch (error: any) {
+    console.error('OpenAI API error:', error.response?.data || error.message);
+    if (error.response?.status === 504) {
+      return NextResponse.json(
+        { error: 'Request timed out, please try again.' },
+        { status: 504 }
+      );
+    }
     return NextResponse.json(
       { error: 'Failed to connect to OpenAI' },
       { status: 500 }
