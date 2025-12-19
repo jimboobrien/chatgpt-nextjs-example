@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+const IMAGE_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg";
+
 interface OpenAIPromptProps {
   onSubmit: (prompt: string) => void;
   onReset: () => void;
@@ -87,7 +89,12 @@ export default function OpenAIPrompt() {
           />
           {error && <p className="error-message">{error}</p>}
         </div>
-
+        {promptType === 'image' && IMAGE_URL && (
+          <div className="image-preview">
+            <h3>Preview:</h3>
+            <img src={IMAGE_URL} alt="Generated preview" className="preview-image" />
+          </div>
+        )}
         <div className="form-buttons">
           <button type="submit" disabled={loading} className="submit-button">
             {loading ? 'Loading...' : 'Submit'}
