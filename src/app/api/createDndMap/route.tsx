@@ -1,57 +1,20 @@
 import { NextResponse } from 'next/server';
-
-//import axios from 'axios';
-// import OpenAI from "openai";
-
-// const config = {
-//   apiKey: process.env.OPENAI_API_KEY,
-// }
-// console.log( "config: ", config );
-
-// const openai = new OpenAI(config);
-
-// const OpenAI = require("openai");
-// const openai = new OpenAI({
-//     apiKey: process.env.OPENAI_API_KEY,
-// });
-
 import OpenAI from 'openai';
+import { buildDndMapPrompt } from '@/lib/build-dnd-map-prompt';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-let imageUrl = '';
-let message = '';
-
-let finalPrompt = '';
-
 export async function POST(request: Request) {
-  const { mapType, mapGeo, mapStyle, prompt  } = await request.json();
+  const { mapType, mapGeo, mapStyle, prompt } = await request.json();
 
   if (!prompt) {
     return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
   }
 
   try {
-
-    finalPrompt += 'create me a DND map ';
-
-    if ( mapType && mapType !== '' ) {
-        finalPrompt += 'with a ' + mapType + ' ';
-    }
-
-    if ( mapGeo && mapGeo !== '' ) {
-        finalPrompt += 'be sure to include ' + mapGeo + ' ';
-    }
-
-    if ( mapStyle && mapStyle !== '' ) {
-        finalPrompt += 'and make it in the style of ' + mapStyle + ' ';
-    }
-
-    if ( prompt && prompt !== '' ) {
-        finalPrompt += 'and ' + prompt + ' ';
-    }
+    const finalPrompt = buildDndMapPrompt({ mapType, mapGeo, mapStyle, prompt });
 
     console.log("====================================");
     console.log( "finalPrompt: ", finalPrompt );
@@ -68,18 +31,14 @@ export async function POST(request: Request) {
     console.log("==============     ======================");
     console.log( "image: ", image );
     console.log("==============     =====================");
-    
-    console.log( "image: ", image.data[0].url );
 
-    if ( image ) {
-        imageUrl = image.data[0].url ?? '';
-        message = image.data[0].revised_prompt ?? '';
-    }
+    const imageUrl = image.data?.[0]?.url ?? '';
+    const message = image.data?.[0]?.revised_prompt ?? '';
+    console.log( "image: ", imageUrl );
 
     return NextResponse.json({
       result: imageUrl,
       message: message,
-      //cost: 0,
     });
   } catch (error: any) {
     console.error('OpenAI API error:', error.response?.data || error.message);
